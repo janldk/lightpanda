@@ -281,11 +281,11 @@ pub const HttpHeaders = struct {
     proxy_bearer_header: ?[:0]const u8,
 
     pub fn init(allocator: Allocator, config: *const Config) !HttpHeaders {
-	const user_agent: [:0]const u8 = if (config.userAgentSuffix()) |suffix|
-	    try allocator.dupeZ(u8, suffix)
-	else
-	    user_agent_base;
-	errdefer if (config.userAgentSuffix() != null) allocator.free(user_agent);
+        const user_agent: [:0]const u8 = if (config.userAgentSuffix()) |suffix|
+            try allocator.dupeZ(u8, suffix)
+        else
+            user_agent_base;
+        errdefer if (config.userAgentSuffix() != null) allocator.free(user_agent);
 
         const user_agent_header = try std.fmt.allocPrintSentinel(allocator, "User-Agent: {s}", .{user_agent}, 0);
         errdefer allocator.free(user_agent_header);
