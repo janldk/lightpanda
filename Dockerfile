@@ -14,6 +14,7 @@ RUN apt-get update -yq && \
 # Get Rust
 RUN curl https://sh.rustup.rs -sSf | sh -s -- --profile minimal -y
 ENV PATH="/root/.cargo/bin:${PATH}"
+ENV LIGHTPANDA_DISABLE_TELEMETRY=true
 
 # install minisig
 RUN curl --fail -L -O https://github.com/jedisct1/minisign/releases/download/${MINISIG}/minisign-${MINISIG}-linux.tar.gz && \
