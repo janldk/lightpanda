@@ -20,7 +20,7 @@ RUN curl --fail -L -O https://github.com/jedisct1/minisign/releases/download/${M
     tar xvzf minisign-${MINISIG}-linux.tar.gz -C /
 
 # clone lightpanda
-RUN git clone https://github.com/lightpanda-io/browser.git
+RUN git clone https://github.com/janldk/lightpanda.git
 WORKDIR /browser
 
 # install zig
