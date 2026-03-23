@@ -21,7 +21,7 @@ RUN curl --fail -L -O https://github.com/jedisct1/minisign/releases/download/${M
 
 # clone lightpanda
 RUN git clone https://github.com/janldk/lightpanda.git
-WORKDIR /browser
+WORKDIR /lightpanda
 
 # install zig
 RUN ZIG=$(grep '\.minimum_zig_version = "' "build.zig.zon" | cut -d'"' -f2) && \
@@ -66,7 +66,7 @@ FROM debian:stable-slim
 # copy ca certificates
 COPY --from=0 /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
-COPY --from=0 /browser/zig-out/bin/lightpanda /bin/lightpanda
+COPY --from=0 /lightpanda/zig-out/bin/lightpanda /bin/lightpanda
 COPY --from=1 /usr/bin/tini /usr/bin/tini
 
 EXPOSE 9222/tcp
